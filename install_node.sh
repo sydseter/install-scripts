@@ -47,10 +47,12 @@ check_node_version() {
 check_node_version;
 
 pushd $DIR;
+cd /var/tmp
 sudo apt-get install g++ curl libssl-dev apache2-utils && \
 sudo apt-get install git-core && \
 git clone git://github.com/ry/node.git && \
 cd node && \
+git checkout v0.10.22-release && \
 ./configure && \
 make && \
 make test && \
