@@ -47,15 +47,22 @@ check_node_version() {
 check_node_version;
 
 pushd $DIR;
-cd /var/tmp
+build=/var/tmp
 sudo apt-get install g++ curl libssl-dev apache2-utils && \
-sudo apt-get install git-core && \
-git clone git://github.com/ry/node.git && \
+sudo apt-get install git-core;
+
+if [ ! -f ${build}/node/.git ]
+then
+    git clone git://github.com/ry/node.git;
+fi
 cd node && \
-git checkout v0.10.22-release && \
+git checkout v0.10.17-release && \
 ./configure --prefix=~/local && \
-mkdir $HOME/local && \
-echo 'export PATH=$HOME/local/bin:$PATH' >> /home/${user}/.bashrc && \
+if [ ! -d ${HOME}/local ]; then
+    mkdir ${HOME}/local
+fi
+
+echo 'export PATH=$HOME/local/bin:$PATH' >> ~/.bashrc && \
 make && \
 make test && \
 make install && \
