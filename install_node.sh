@@ -67,5 +67,6 @@ make && \
 make test && \
 make install && \
 cd ../ && \
+. ~/bashrc && \
 rm -rf node;
 popd;
