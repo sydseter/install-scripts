@@ -53,10 +53,12 @@ sudo apt-get install git-core && \
 git clone git://github.com/ry/node.git && \
 cd node && \
 git checkout v0.10.22-release && \
-./configure && \
+./configure --prefix=~/local && \
+mkdir $HOME/local && \
+echo 'export PATH=$HOME/local/bin:$PATH' >> /home/${user}/.bashrc && \
 make && \
 make test && \
-sudo make install && \
+make install && \
 cd ../ && \
 rm -rf node;
 popd;
